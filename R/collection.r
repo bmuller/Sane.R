@@ -48,8 +48,8 @@ setReplaceMethod("[", signature(x="collection", i="ANY", j="missing", value="ANY
 
 setMethod("length", "collection", function(x) length(x@env))
 
-setMethod("show", "collection", function(x) {
-  cat("A 'collection' object with a size of", length(x))
+setMethod("show", "collection", function(object) {
+  cat("A 'collection' with a size of", length(object))
 })
 
 is.collection <- function(x) is( x, "collection" )
@@ -73,28 +73,3 @@ setMethod("values", "collection",
                   }
           ) 
 
-
-x <- collection(10)
-values(x)
-
-#x[] <- 1
-#print(x[1])
-#collection.set(x, 1, c(1,2,3))
-x[] <- c(1,2,3)
-print(x[1])
-
-x[1] <- c(4,5,6)
-print(x[1])
-
-x[] <- c(7,8,9)
-print(x[2])
-
-x[10] <- c(1,2,34)
-
-values(x)
-
-print(x)
-
-#x[0] <- c(1,2,3)
-#x[1] <- c(4,5,6)
-#length(x)
