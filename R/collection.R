@@ -15,21 +15,26 @@ collection.get <- function(col, key, drop=TRUE) {
   return(get(varname, envir=col@env))
 }
 
-collection.set <- function(col, key, value) {
-  key <- valid.key(col, key)
+collection.set <- function(col, key, value, append=FALSE) {
+  key <- valid.key(col, key, append)
   varname <- paste('vars', key, sep=".")  
   assign(varname, value, envir=col@env)
   return(col)
 }
 
-valid.key <- function(col, key) {
+valid.key <- function(col, key, append=FALSE) {
   if(!is.numeric(key))
     stop("Cannot use non-numeric object as index")
   key <- as.integer(key)
   if(is.na(key))
     stop("Cannot coerce index object into an integer")
-  if(key > length(col) || key == 0)
-    stop(paste("Index", key, "is out of bounds")
+
+  if(key == 0)
+    stop(paste("Index", key, "is out of bounds (0 is not a valid index)"))
+  else if(append && key > length(col)+1)
+    stop(paste("Index", key, "is out of bounds"))
+  else if(!append && key > length(col))
+    stop(paste("Index", key, "is out of bounds"))
   return(key)
 }
 
@@ -41,7 +46,7 @@ setReplaceMethod("[", signature(x="collection", i="ANY", j="missing", value="ANY
                  function(x, i, ..., value) {
                    if(missing(i)) {
                      index <- as.integer(length(x) + 1)
-                     return(collection.set(x, index, value))
+                     return(collection.set(x, index, value, TRUE))
                    }
                    return(collection.set(x, i, value))
                  }
