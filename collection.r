@@ -1,11 +1,11 @@
 
 setClass("collection", representation( env="environment" ))
 
-collection <- function(size=0) {
+collection <- function(size=0, default=NA) {
   col <- new("collection", env = new.env(hash=TRUE, parent=emptyenv() ))
   if(size > 0)
     for(index in 1:size)
-      collection.set(col, index, NA)
+      collection.set(col, index, default)
   return(col)
 }
 
@@ -53,6 +53,18 @@ setMethod("show", "collection", function(x) {
 })
 
 is.collection <- function(x) is( x, "collection" )
+
+collection.map <- function(f) {
+
+}
+
+collection.filter <- function(f) {
+
+}
+
+collection.reduce <- function(f, initial=0) {
+
+}
 
 setGeneric("values", function(x, ...) standardGeneric("values"))
 setMethod("values", "collection",
