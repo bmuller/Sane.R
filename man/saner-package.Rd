@@ -52,13 +52,13 @@ Maintainer: Brian Muller <bmuller at butterfat dot net>
   # Reference those by index
   col[1]
   col[2]
-  col[3](``hello'')
+  col[3]("hello")
 
   length(col)
 
   col <- collection(10, 0)
   # You can set specific elements as well
-  col[10] <- ``hello''
+  col[10] <- "hello"
 
 }
 
