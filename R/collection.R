@@ -29,7 +29,7 @@ valid.key <- function(col, key) {
   if(is.na(key))
     stop("Cannot coerce index object into an integer")
   if(key > length(col) || key == 0)
-    stop("Index out of bounds")
+    stop(paste("Index", key, "is out of bounds")
   return(key)
 }
 
