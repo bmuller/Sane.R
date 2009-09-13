@@ -1,4 +1,4 @@
-#export( .get, .set )
 exportClasses(
     collection
 )
+export(collection)

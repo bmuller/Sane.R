@@ -3,60 +3,62 @@
 \docType{package}
 
 \title{
-    Hash/associative array/dictionary data structure for the R language.
+    Sane.R
 }
 
 \description{
 
-    This S4 class is designed to provide a hash-like data structure in a  
-    native R style and provides the necessary methods for all general 
-    methods for hash operations.
+    A group of functions and classes for making R act more like a 
+    general purpose programming language.
 
 }
 
 \details{
   \tabular{ll}{
-    Package: \tab hash\cr
+    Package: \tab Sane.R\cr
     Type: \tab Package\cr
-    Version: \tab 0.40\cr
-    Date: \tab 2009-09-04\cr
-    License: \tab GPL 2+\cr
+    Version: \tab 0.0\cr
+    Date: \tab 2009-09-01\cr
+    License: \tab GPL 3+\cr
     LazyLoad: \tab yes\cr
     Depends: \tab methods\cr
   }
 }
 
 \author{
-Christopher Brown
+Brian Muller
 
-Maintainer: Christopher Brown <cbrown -at- opendatagroup -dot- com>
+Maintainer: Brian Muller <bmuller at butterfat dot net>
 }
 \references{
-    http://www.mail-archive.com/r-help@r-project.org/msg37637.html
 
-    http://www.mail-archive.com/r-help@r-project.org/msg37650.html
-
-    http://tolstoy.newcastle.edu.au/R/help/05/12/index.html\#18192
 }
 
 \seealso{
-  See also \code{\link{hash} }, \code{\link{hash-accessors}} and 
+  See also \code{\link{collection} }, \code{\link{collection-accessors}} and 
   \code{\link{environment} }
 }
 
 \examples{
 
-  h <- hash( keys=letters, values=1:26 )
-  h <- hash( letters, 1:26 )
 
-  h$a # 1
+  col <- collection()
+  
+  # Append some objects to an empty collection
+  col[] <- c(1,2,3)
+  col[] <- c(4,5,6,7,8)
+  col[] <- function(x) { print(x) }
 
-  h$foo <- "bar"
-  h[ "foo" ] 
-  h[[ "foo" ]]
+  # Reference those by index
+  col[1]
+  col[2]
+  col[3](``hello'')
 
-  clear(h)
-  rm(h)
+  length(col)
+
+  col <- collection(10, 0)
+  # You can set specific elements as well
+  col[10] <- ``hello''
 
 }
 

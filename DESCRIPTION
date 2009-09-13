@@ -2,7 +2,9 @@ Package: Sane.R
 Version: 0.0
 Date: 2009-09-01
 Title: A library of helpers to make R act sane
-Author: Brian Muller <bmuller@butterfat.net>
+Author: Brian Muller <bmuller@butterfat.net>.  Many thanks to 
+	Christopher Brown for his hash class that provided a spring
+	board for work on R S4 classes.
 Maintainer: Brian Muller <bmuller@butterfat.net>
 Depends: methods
 Suggests: 

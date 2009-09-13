@@ -1,25 +1,24 @@
-\name{hash-class}
+\name{collection-class}
 \docType{class}
-\alias{hash-class}
+\alias{collection-class}
 
-\title{Class "hash" }
+\title{Class "collection" }
 \description{ 
 
-  Implements a S4 hash class in R similar to hashes / associatesd arrays / 
-  dictionaries in languages.  As much as possible these constructs have 
-  been given an R type interface.
-	
-  Hash construction is flexible and takes several syntaxes.   
+  Implements a S4 collection class in R that is a heterogeneous, dynamic array that is
+  agnostic in terms of element types and grows as needed.
 
-  Accessors are defined for \code{\$}, \code{[} and \code{[[}.
+  It is, at it's core, an associative array that uses integers as the key values.
+	
+  Accessors are defined for \code{[}.
     
 }
 
 \section{Slots}{
   \describe{ 
      \item{\code{env}:}{ 
-       Object of class \code{"environment"}.  This is the hashed environment 
-       used for key-value storage. }
+       Object of class \code{"environment"}.  This is the environment 
+       used for value storage. }
   }
 }
 
@@ -30,37 +29,25 @@
 
 \section{Methods}{
   \describe{
-    \item{[<-}{\code{signature(x = "hash", i = "ANY", j = "missing")}: ... }
-    \item{[}{\code{signature(x = "hash", i = "ANY", j = "missing", drop = "missing")}
+    \item{[<-}{\code{signature(x=''collection'', i=''ANY'', j=''missing'', value=''ANY'')}: ... }
+    \item{[}{\code{signature(x=''collection'', i=''ANY'', j=''missing'', drop=''missing'')}
 : ... }
-    \item{[[<-}{\code{signature(x = "hash", i = "ANY", j = "missing")}: ... }
-    \item{[[}{\code{signature(x = "hash", i = "ANY", j = "missing")}: ... }
-    \item{\$<-}{\code{signature(x = "hash")}: ... }
-    \item{\$}{\code{signature(x = "hash")}: ... }
-    \item{clear}{\code{signature(x = "hash")}: ... }
-    \item{del}{\code{signature(x = "ANY", hash = "hash")}: ... }
-    \item{has.key}{\code{signature(key = "ANY", hash = "hash")}: ... }
-    \item{keys}{\code{signature(hash = "hash")}: ... }
-    \item{length}{\code{signature(x = "hash")}: ... }
-    \item{values}{\code{signature(x = "hash")}: ... }
+    \item{length}{\code{signature(x = "collection")}: ... }
+    \item{values}{\code{signature(x = "collection")}: ... }
+    \item{clear}{\code{signature(x = "collection")}: ... }
   }
 }
 
 \references{ 
 
-	http://en.wikipedia.org/wiki/Hash_table
-
 	http://en.wikipedia.org/wiki/Associative_array
 
 }
-\author{ Christopher Brown }
+\author{ Brian Muller }
 
 \note{ 
 
-  For lists of any appreciable length hashes provide much quicker 
-  element access than named vectors.
-
-  Objects of class \code{hash} do not release memory with a call to 
+  Objects of class \code{collection} do not release memory with a call to 
   \code{rm}.  \code{clear} must be called before \code{rm} to properly
   release the memory.
 
@@ -71,7 +58,7 @@
 }
 
 \examples{
-  showClass("hash")
+  showClass("collection")
 }
 
 \keyword{classes}

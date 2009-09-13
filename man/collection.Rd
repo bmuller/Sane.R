@@ -1,98 +1,80 @@
 \name{collection}
 
-\alias{hash}
-\alias{is.hash}
-\alias{as.list.hash}
+\alias{collection}
+\alias{is.collection}
 
-\title{ hash/associative array/dictionary data structure for the R language }
+\title{ Heterogeneous array data structure for the R language }
 
 \description{
 
-  Preferred constructor for the \code{\link{hash-class}}.
+  Preferred constructor for the \code{\link{collection-class}}.
   
 }
 
 \usage{
-  hash(...)
+  collection(size=0, default=NA)
 
-  is.hash(x)
-
-  as.list.hash(x, all.names = FALSE, ... )
+  is.collection(x)
 
 }
 
 \arguments{
 
-  \item{x}{ A hash object. }
+  \item{x}{ A collection object. }
 
-  \item{all.names}{ 
-    a logical indicating whether to copy all values or (default)
-    only those whose names do not begin with a dot
+  \item{size}{ 
+    The initial default size of the collection.
   }
 
-  \item{...}{ Additional arguments passed to the function  }
+  \item{default}{
+    Default value for collection elements if size is greater than 0.
+  }
 }
 
 \details{
 
-  \code{hash} returns a hash object.  Key-value pairs may be specified
-  via the \code{...} argument as explicity arguments \code{keys} and
-  \code{values}, as named key-value pairs, as a named vector or as implicit
-  key, value vectors.  See examples below for each type.  
+  \code{collection} returns a collection object.  A collection is an array
+  that is agnostic in terms of the elements within it.  For instance, a 
+  collection may contain an array as the first element, a matrix as the 
+  second, and a function as the third.  Collection elements can be 
+  retrieved and set by integer index.
   
-  Keys and must be coercable to a character vector. Values are restricted
-  to to valid R objects.
+  Values are restricted only to valid R objects.
 
-  See \code{\link{.set}} for further details and how key-value vectors of 
-  unequal length are interpretted.
-
-  Hashes may be accessed via the standard R accessors \code{[}, \code{[[} 
-  and \code{\$}.  See \code{\link{hash-accessors}} for details.
+  Collections may be accessed via the standard R accessor \code{[}.  See 
+  \code{\link{collection-accessors}} for details.
  
-  \code{is.hash} returns a boolean value indicating if the argument is
-  a hash object.
-
-  \code{as.list.hash} coerces the hash to a list.
+  \code{is.collection} returns a boolean value indicating if the argument is
+  a collection object.
 
 }
 
 \value{
-  For \code{hash}, an object of class hash.   
+  For \code{collection}, an object of class collection.   
 }
 
-\author{ Christopher Brown }
-\seealso{ \code{\link{.set}}, \code{\link{hash-accessors}} }
+\author{ Brian Muller }
+\seealso{ \code{\link{collection-accessors}} }
 
 \examples{
 
-  hash()
-
-  hash( key=letters, values=1:26 )
+  col <- collection()
   
-  hash( 1:3, lapply(1:3, seq, 1 ))
-  
-  hash( a=1, b=2, c=3 )
-  hash( c(a=1, b=2, c=3) ) 
-  hash( list(a=1,b=2,c=3) )
+  # Append some objects to an empty collection
+  col[] <- c(1,2,3)
+  col[] <- c(4,5,6,7,8)
+  col[] <- function(x) { print(x) }
 
-  hash( c("foo","bar","baz"), 1:3 )
-  hash( c("foo","bar","baz"),  lapply(1:3, seq, 1 ) )
-  hash( letters, 1:26 )
+  # Reference those by index
+  col[1]
+  col[2]
+  col[3](``hello'')
 
-  h <- hash( letters, 1:26 )
-  h$a
-  h$b
-  h[[ "a" ]]
-  h[ letters[1:3] ]
+  length(col)
 
-  h$a<-100
-  h[['a']]<-letters
-
-  is.hash(h)
-  as.list(h)
-
-  clear(h)
-  rm(h)
+  col <- collection(10, 0)
+  # You can set specific elements as well
+  col[10] <- ``hello''
 
 }
 
