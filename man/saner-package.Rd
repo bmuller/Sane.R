@@ -44,12 +44,10 @@ Maintainer: Brian Muller <bmuller at butterfat dot net>
 
   col <- collection()
   
-  # Append some objects to an empty collection
   col[] <- c(1,2,3)
   col[] <- c(4,5,6,7,8)
   col[] <- function(x) { print(x) }
 
-  # Reference those by index
   col[1]
   col[2]
   col[3]("hello")
@@ -57,7 +55,6 @@ Maintainer: Brian Muller <bmuller at butterfat dot net>
   length(col)
 
   col <- collection(10, 0)
-  # You can set specific elements as well
   col[10] <- "hello"
 
 }
